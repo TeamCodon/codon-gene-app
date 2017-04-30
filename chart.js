@@ -31,7 +31,7 @@ function initChart(min, max, points)
         data: {
             labels: labels,//.map(function(item){return new Date(item)}),//["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
             datasets: [{
-                label: '# of Votes',
+                label: '# of Occurrences',
                 data: values,//[12, 19, 3, 5, 2, 3],
                 backgroundColor: 'rgba(255, 99, 132, 0.2)',
                 //    'rgba(255, 99, 132, 0.2)',
@@ -73,5 +73,18 @@ function initChart(min, max, points)
 
 
 function updateChart(timeRange){
-
+    const labels = myChart.data.labels;
+    const values = [];
+    for(var i=0; i<labels.length; i++ )
+    {
+        if(labels[i]>timeRange[0] && labels[i]<timeRange[1] )
+            values.push(40000);
+        else
+            values.push(0);
+    }
+    myChart.data.datasets = [myChart.data.datasets[0],{
+        label: '# of time',
+        data: values,
+    }]
+    myChart.update();
 }

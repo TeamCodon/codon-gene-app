@@ -25,7 +25,7 @@ function setPointsForTime(timeRange){
         map.removeLayer(heatLayer);
     }
     heatLayer = L.heatLayer(heatPoints, {
-        radius:6,
+        radius:4,
         blur:10
     }).addTo(map);
 
@@ -72,12 +72,14 @@ function playMethod(){
     {
         currentValue+= play_gap;
         $( "#slider" ).slider("value", currentValue );
+        updateChart([currentValue-gap/2,currentValue+gap/2]);
     }
     if(playing && currentValue>max_date)
     {
         pause();
     }
     setTimeout(playMethod, 50);
+
 }
 playMethod();
 initChart(min_date, max_date, drawingPoints);
