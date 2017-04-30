@@ -2,7 +2,7 @@ var myChart;
 
 function initChart(min, max, points)
 {
-    console.log(points);
+    //console.log(points);
     const gap = (max - min)/100;
     const labels = [];
     const values = [];
@@ -23,8 +23,8 @@ function initChart(min, max, points)
 
         //break;
     }
-    console.log(labels);
-    console.log(values);
+    //console.log(labels);
+    //console.log(values);
     var ctx = document.getElementById("chartCanvas");
     myChart = new Chart(ctx, {
         type: 'line',

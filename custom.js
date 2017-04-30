@@ -2,9 +2,12 @@
  * Created by Janaka on 2017-04-29.
  */
 var map = L.map('map').setView([37.391942, -6.557898], 1);
-var tiles = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+var tiles = googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',{
+    maxZoom: 20,
+    subdomains:['mt0','mt1','mt2','mt3']
 }).addTo(map);
+
+
 
 var heatLayer = null
 var drawingPoints = falconOcPoints;
@@ -76,5 +79,10 @@ function playMethod(){
     }
     setTimeout(playMethod, 50);
 }
-playMethod();
+//playMethod();
 initChart(min_date, max_date, drawingPoints);
+
+L.marker([51.5, -0.09]).addTo(map);
+L.circle([51.5, -0.09], {
+    radius: 500
+}).addTo(map);
