@@ -9,25 +9,53 @@ var tiles = googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}
 
 
 
-var heatLayer = null
+var heatLayer = [null]
+var dPoints = [[],[],[],[],[],[],[],[]];
 var drawingPoints = falconOcPoints;
+for (var i = 0; i < falconOcPoints.length;i++)
+{
+	dPoints[falconOcPoints[i][3]].push([falconOcPoints[i][0],falconOcPoints[i][1], falconOcPoints[i][2]]);
+}
+console.log(dPoints);
+var heatPoints = [[],[],[],[],[],[],[],[]];
 function setPointsForTime(timeRange){
-    var heatPoints = drawingPoints
+	for (var i = 0; i < 8; i++)
+	{
+     heatPoints[i] = dPoints[i]
         .filter(function(point){
             const t = new Date(point[0]);
             return t>timeRange[0]&&t<timeRange[1];
         })
         .map(function (p) {
             return [p[1], p[2],10000]; });
-    console.log(heatPoints.length);
-    if(heatLayer)
+	}
+    if(heatLayer[0])
     {
-        map.removeLayer(heatLayer);
+		for (var i = 0; i < 8; i++)
+			map.removeLayer(heatLayer[i]);
+
     }
-    heatLayer = L.heatLayer(heatPoints, {
+	heatLayer.push( L.heatLayer(heatPoints[0], {
         radius:4,
-        blur:10
-    }).addTo(map);
+        blur:10,
+		gradient: {
+			1: '#edf8fb',
+			0.8: '#b2e2e2',
+			0.6: '#66c2a4',
+			0.4: '#2ca25f',
+			0.2: '#006d2c'
+		}
+    }).addTo(map));
+	heatLayer.push( L.heatLayer(heatPoints[3], {
+        radius:4,
+        blur:10,
+		gradient: {
+			1: '#edf8fb',
+			0.8: '#b3cde3',
+			0.6: '#8c96c6',
+			0.4: '#8856a7',
+			0.2: '#810f7c'}
+    }).addTo(map));
 
     updateChart(timeRange);
 }
