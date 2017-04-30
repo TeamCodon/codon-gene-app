@@ -3,6 +3,7 @@
     <title>Leaflet.heat demo</title>
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
     <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.bundle.min.js"></script>
 
 
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -19,6 +20,8 @@
 </head>
 <body>
 
+
+<canvas id="chartCanvas" width="1000px" height="200px"></canvas>
 <div id="slider"></div>
 <button onclick="play()">Play</button>
 <button onclick="pause()">Pause</button>
@@ -29,8 +32,10 @@
 
 <script src="leaflet_heat.js"></script>
 
-<script src="birds.js"></script>
+<!--<script src="birds.js"></script>-->
 <script src="whale.js"></script>
+<script src="falconOc.js"></script>
+<script src="chart.js"></script>
 <script src="custom.js"></script>
 </body>
 </html>
