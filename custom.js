@@ -34,7 +34,7 @@ function setPointsForTime(timeRange){
 
 min_date =  Date.parse('9/6/1985 8:19 PM'); // Date.parse('1929-12-16 09:00:00.000');
 max_date = Date.parse('11/11/17 11:07 PM');
-const gap = 1000*60*60*24*7*4*12*2; //(max_date-min_date)/100//1000*60*60*24*7*4*12;
+const gap = 1000*60*60*24*7* 4;//*12*2; //(max_date-min_date)/100//1000*60*60*24*7*4*12;
 const play_gap = gap/2;
 var playing = false;
 var currentValue = min_date;
@@ -79,10 +79,14 @@ function playMethod(){
     }
     setTimeout(playMethod, 50);
 }
-//playMethod();
+playMethod();
 initChart(min_date, max_date, drawingPoints);
 
 L.marker([51.5, -0.09]).addTo(map);
 L.circle([51.5, -0.09], {
-    radius: 500
+    radius: 500000,
+    fillColor:'red',
+    opacity:0.5,
+    color:'red'
+
 }).addTo(map);
