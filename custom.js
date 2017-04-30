@@ -66,8 +66,6 @@ function reset(){
 }
 
 function playMethod(){
-    console.log(new Date(currentValue));
-    console.log(playing);
     if(playing && currentValue<=max_date)
     {
         currentValue+= play_gap;

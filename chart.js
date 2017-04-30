@@ -28,6 +28,7 @@ function initChart(min, max, points)
     var ctx = document.getElementById("chartCanvas");
     myChart = new Chart(ctx, {
         type: 'line',
+		animation: false,
         data: {
             labels: labels,//.map(function(item){return new Date(item)}),//["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
             datasets: [{
@@ -53,6 +54,7 @@ function initChart(min, max, points)
         },
         options: {
             responsive:false,
+			animation: false,
             scales: {
                 yAxes: [{
                     ticks: {
@@ -75,12 +77,17 @@ function initChart(min, max, points)
 function updateChart(timeRange){
     const labels = myChart.data.labels;
     const values = [];
+	console.log(labels.length);
     for(var i=0; i<labels.length; i++ )
     {
-        if(labels[i]>timeRange[0] && labels[i]<timeRange[1] )
+        if(labels[i-1]<timeRange[0] && labels[i+1]>timeRange[1] )
+		{
             values.push(40000);
+		}
         else
+		{
             values.push(0);
+		}
     }
     myChart.data.datasets = [myChart.data.datasets[0],{
         label: '# of time',
