@@ -78,11 +78,18 @@ function updateChart(timeRange){
     const labels = myChart.data.labels;
     const values = [];
 	console.log(labels.length);
+	marker_added = false;
     for(var i=0; i<labels.length; i++ )
     {
-        if(labels[i-1]<timeRange[0] && labels[i+1]>timeRange[1] )
+        if(labels[i]>timeRange[0] )
 		{
-            values.push(40000);
+			if (!marker_added)
+			{
+				values.push(40000);
+				values.push(40000);
+				marker_added = true;
+			}
+			
 		}
         else
 		{
@@ -92,6 +99,7 @@ function updateChart(timeRange){
     myChart.data.datasets = [myChart.data.datasets[0],{
         label: '# of time',
         data: values,
+		backgroundColor:'rgba(0,0,255,0.2)'
     }]
     myChart.update();
 }
